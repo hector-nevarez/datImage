@@ -1,11 +1,16 @@
+/*global chrome*/
 import React, { useState, useEffect, useRef } from "react";
 
 
 function App(props) {
+  const [imageArr, setImageArr]= useState(null);
 
-  // useEffect(()=>{
-
-  // },[])
+  useEffect(() => {
+    chrome.storage.local.get('imageArray', function (data) {
+      setImageArr(data);
+    });
+    console.log('This is the array of images inside App.js!',imageArr)
+  }, [])
 
   // const getCurrentTab = async () => {
   //   let queryOptions = { active: true, currentWindow: true };
