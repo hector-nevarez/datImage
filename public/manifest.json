@@ -4,8 +4,16 @@
   "description": "Get related data of the image that you are looking",
   "version": "1.0.0",
   "manifest_version": 3,
+  "permissions": [
+    "tabs", "storage"
+  ],
+  "content_scripts":[
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content-script.js"]
+    }
+  ],
   "action":{
     "default_popup": "index.html"
   }
-
 }
