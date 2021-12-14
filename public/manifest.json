@@ -1,0 +1,11 @@
+{
+  "name": "datamage",
+  "author": "Hector Nevarez",
+  "description": "Get related data of the image that you are looking",
+  "version": "1.0.0",
+  "manifest_version": 3,
+  "action":{
+    "default_popup": "index.html"
+  }
+
+}
