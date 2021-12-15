@@ -54,7 +54,7 @@ function App(props) {
     let getImage = document.getElementById(`image_${index}`)
     // console.log('-------------------------------', getImage)
     const predictions = await model.classify(getImage, 1);
-    console.log('This is the Identification results from App.js:', predictions);
+    // console.log('This is the Identification results from App.js:', predictions);
     // The predictions are not a single word all the time hence, we have make sure is only one word to contact the Wikipedia API.
     let formatPredictions = predictions[0].className.split(', ');
     formatPredictions = formatPredictions.map((prediction) => {
@@ -68,15 +68,14 @@ function App(props) {
         return prediction[0].toUpperCase() + prediction.slice(1)
       }
     })
-    // console.log(formatPredictions[0])
-    // formatPredictions = formatPredictions.split(' ').map((word) => {
-    //   return word[0].toUpperCase() + word.slice(1);
-    // });
-    // formatPredictions = formatPredictions.join('%20');
     setPrediction(formatPredictions);
   }
 
   console.log('This is the state prediiction from App.js:', prediction);
+
+  const handlePressPrediction = () => {
+    console.log('Pressed')
+  }
 
   return (
     <div className="App">
@@ -98,7 +97,26 @@ function App(props) {
                 })
             }
           </div>
-
+          <table className="resultsHolder">
+            <thead>
+              <tr>
+                <th colspan="2" >Predictions:</th>
+              </tr>
+            </thead>
+            <tbody>
+              {
+                (prediction.length > 0) ? prediction.map((pred, index) => {
+                  return (
+                    <tr key={index} onClick={handlePressPrediction}>{pred.replace("%20", " ")}
+                    </tr>
+                  )
+                }) :
+                  <tr>
+                    No predictions yet...Perhaps you should try to hit the "identify" button first
+                  </tr>
+              }
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
