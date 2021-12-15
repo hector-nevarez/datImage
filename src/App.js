@@ -1,6 +1,7 @@
 // /*global chrome*/
 import React, { useState, useEffect, useRef } from "react";
 import * as mobilenet from "@tensorflow-models/mobilenet";
+import axios from "axios";
 
 const imageArray = [
   "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Steve_Davis_at_Snooker_German_Masters_%28Martin_Rulsch%29_2014-01-29_06.jpg/145px-Steve_Davis_at_Snooker_German_Masters_%28Martin_Rulsch%29_2014-01-29_06.jpg",
@@ -29,6 +30,8 @@ function App(props) {
   const [isModelLoading, setIsModelLoading] = useState(false);
   const [model, setModel] = useState(null)
   const [prediction, setPrediction] = useState('');
+  const [wikiData, setWikiData] = useState('');
+  const [wikiDataStatus, setWikiDataStatus] = useState(false);
 
   // const imageRef = useRef()
 
@@ -73,8 +76,10 @@ function App(props) {
 
   console.log('This is the state prediiction from App.js:', prediction);
 
-  const handlePressPrediction = () => {
-    console.log('Pressed')
+  const handlePressPrediction = async (prediction) => {
+    setWikiDataStatus(true);
+    const wikiData = await axios.get(`https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&prop=extracts&titles=${prediction}&formatversion=2&exsentences=10&exlimit=1&exintro=1&explaintext=1`);
+    console.log('This is the data found in Wikipedia:', wikiData.data.query.pages[0].extract);
   }
 
   return (
@@ -107,7 +112,7 @@ function App(props) {
               {
                 (prediction.length > 0) ? prediction.map((pred, index) => {
                   return (
-                    <tr key={index} onClick={handlePressPrediction}>{pred.replace("%20", " ")}
+                    <tr key={index} onClick={() => handlePressPrediction(pred)}>{pred.replace("%20", " ")}
                     </tr>
                   )
                 }) :
@@ -117,6 +122,14 @@ function App(props) {
               }
             </tbody>
           </table>
+          {
+            (wikiDataStatus) ?
+              <div>
+                <div>Data from Wikipedia:</div>
+                <div>{wikiData}</div>
+              </div> :
+              <span></span>
+          }
         </div>
       </div>
     </div>
