@@ -30,13 +30,13 @@ function App(props) {
   //   // console.log('This is the array of images inside App.js!', imageArr)
   // }
 
-  const handleClickRetrieve = () => {
-    chrome.storage.local.get(['imageArray'], (results) => {
-      if (results.imageArray) {
-        setImages(results.imageArray);
-      }
-    });
-  }
+  // const handleClickRetrieve = () => {
+  //   chrome.storage.local.get(['imageArray'], (results) => {
+  //     if (results.imageArray) {
+  //       setImages(results.imageArray);
+  //     }
+  //   });
+  // }
 
   return (
     <div className="App">
@@ -44,23 +44,23 @@ function App(props) {
       {/* <div>
         <button onClick={handleClick} >Scan Images</button>
       </div> */}
-      <div>
+      {/* <div>
         <button onClick={handleClickRetrieve} >Get Image Data</button>
-      </div>
-      <ul>
+      </div> */}
+      <div>
         {
-          (!images) ?
+          (!props.imageArray) ?
             <p>Click the "Scan" button first, then the "Get Image data" button to see information from the web related to that image</p> :
-            images.map((image, index) => {
-              // const div = document.createElement('img')
-              // div.src= image
-              // document.body.appendChild(div);
-              <li key={index}>
-                <img src={image} />
-              </li>
+            props.imageArray.map((image, index) => {
+              const div = document.createElement('img')
+              div.src= image
+              document.body.appendChild(div);
+              // <div key={index}><------------Why this doesn't work!!!!!
+              //   <img src={image} />
+              // </div>
             })
         }
-      </ul>
+      </div>
     </div>
   );
 }
