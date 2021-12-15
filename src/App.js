@@ -28,7 +28,7 @@ function App(props) {
   // const { imageArray } = props;
   const [isModelLoading, setIsModelLoading] = useState(false);
   const [model, setModel] = useState(null)
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [prediction, setPrediction] = useState('');
 
   // const imageRef = useRef()
 
@@ -53,9 +53,19 @@ function App(props) {
   const handleIdentify = async (index) => {
     let getImage = document.getElementById(`image_${index}`)
     // console.log('-------------------------------', getImage)
-    const predictions = await model.classify(getImage);
+    const predictions = await model.classify(getImage, 1);
     console.log('This is the Identification results from App.js:', predictions);
+    // The predictions are not a single word all the time hence, we have make sure is only one word to contact the Wikipedia API.
+    let formatPredictions = predictions[0].className.split(',')[0];
+    // console.log(formatPredictions[0])
+    formatPredictions = formatPredictions.split(' ').map((word) => {
+      return word[0].toUpperCase() + word.slice(1);
+    });
+    formatPredictions = formatPredictions.join('%20');
+    setPrediction(formatPredictions);
   }
+
+  console.log('This is the state prediiction from App.js:', prediction);
 
   return (
     <div className="App">
@@ -77,6 +87,7 @@ function App(props) {
                 })
             }
           </div>
+
         </div>
       </div>
     </div>
