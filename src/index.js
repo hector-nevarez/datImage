@@ -10,4 +10,3 @@ chrome.storage.local.get(null, function (data) {
     document.getElementById('root')
   )
 });
-
