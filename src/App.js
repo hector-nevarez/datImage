@@ -56,12 +56,23 @@ function App(props) {
     const predictions = await model.classify(getImage, 1);
     console.log('This is the Identification results from App.js:', predictions);
     // The predictions are not a single word all the time hence, we have make sure is only one word to contact the Wikipedia API.
-    let formatPredictions = predictions[0].className.split(',')[0];
+    let formatPredictions = predictions[0].className.split(', ');
+    formatPredictions = formatPredictions.map((prediction) => {
+      let dividePrediction = prediction.split(' ');
+      if (dividePrediction.length > 0 && typeof dividePrediction == 'object') {
+        dividePrediction = dividePrediction.map((word) => {
+          return word[0].toUpperCase() + word.slice(1);
+        })
+        return dividePrediction.join('%20');
+      } else {
+        return prediction[0].toUpperCase() + prediction.slice(1)
+      }
+    })
     // console.log(formatPredictions[0])
-    formatPredictions = formatPredictions.split(' ').map((word) => {
-      return word[0].toUpperCase() + word.slice(1);
-    });
-    formatPredictions = formatPredictions.join('%20');
+    // formatPredictions = formatPredictions.split(' ').map((word) => {
+    //   return word[0].toUpperCase() + word.slice(1);
+    // });
+    // formatPredictions = formatPredictions.join('%20');
     setPrediction(formatPredictions);
   }
 
