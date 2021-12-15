@@ -5,15 +5,23 @@
   "version": "1.0.0",
   "manifest_version": 3,
   "permissions": [
-    "tabs", "storage"
+    "tabs",
+    "storage"
   ],
-  "content_scripts":[
+  "content_scripts": [
     {
-      "matches": ["<all_urls>"],
-      "js": ["content-script.js"]
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content-script.js"
+      ]
     }
   ],
-  "action":{
+  "action": {
     "default_popup": "index.html"
+  },
+  "background": {
+    "service_worker": "background.js"
   }
 }

@@ -13,3 +13,13 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     sendResponse({ imageArray });// <-- was doing this
     // chrome.storage.local.set({ imageArray })
 })
+// chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+//     if (request.scan === 'scanImages') {
+//         let imageNodeList = document.querySelectorAll("img");
+//         let imageArray = Array.from(imageNodeList);
+//         imageArray = imageArray.map((image) => {
+//             return image.src;
+//         })
+//         chrome.runtime.sendMessage({toBack:'contactBack'},{imageArray: imageArray})
+//     }
+// })
