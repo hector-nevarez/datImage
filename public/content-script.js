@@ -9,7 +9,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
         // console.log(image.src);
         return image.src;
     })
-    console.log('This is imageArray in content-script:', imageArray)
+    // console.log('This is imageArray in content-script:', imageArray)
     sendResponse({ imageArray });// <-- was doing this
     // chrome.storage.local.set({ imageArray })
 })

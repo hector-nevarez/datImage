@@ -52,11 +52,10 @@ function App(props) {
           (!images) ?
             <p>Click the "Scan" button first, then the "Get Image data" button to see information from the web related to that image</p> :
             images.map((image, index) => {
-              const div = document.createElement('div')
-              div.textContent= image
+              const div = document.createElement('img')
+              div.src= image
               document.body.appendChild(div);
             })
-          // <p>{images[0]}</p>
         }
       </div>
     </div>
