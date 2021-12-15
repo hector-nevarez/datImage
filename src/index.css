@@ -17,6 +17,8 @@ code {
   background-color: rgb(0, 225, 255);
 }
 
-/* body{
-  background-color: coral;
-} */
+#root{
+  display:flex;
+  flex: 'space-around';
+  background-color: rgb(241, 224, 217);
+}
