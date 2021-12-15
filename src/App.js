@@ -30,7 +30,7 @@ function App(props) {
   const [model, setModel] = useState(null)
   const [selectedImage, setSelectedImage] = useState(null);
 
-  const imageRef = useRef()
+  // const imageRef = useRef()
 
   const loadModel = async () => {
     setIsModelLoading(true);
@@ -50,13 +50,11 @@ function App(props) {
   }, []);
 
   // console.log('This is the images from App.js:', imageArray);
-  const handleIdentify = async () => {
-    const predictions = await model.classify(imageRef.current);
+  const handleIdentify = async (index) => {
+    let getImage = document.getElementById(`image_${index}`)
+    // console.log('-------------------------------', getImage)
+    const predictions = await model.classify(getImage);
     console.log('This is the Identification results from App.js:', predictions);
-  }
-
-  const handleSelect = (index) => {
-    setSelectedImage(index)
   }
 
   return (
@@ -71,16 +69,14 @@ function App(props) {
                 <h2>Model Loading...</h2> :
                 imageArray.map((image, index) => {
                   return (
-                    <div key={index}>
-                      <img src={image} alt="Image obtained from the page" crossOrigin="anonymous" />
-                      <button className='button' onClick={() => handleSelect(index)}>Select Image</button>
+                    <div key={index} >
+                      <img src={image} alt="Image obtained from the page" crossOrigin="anonymous" id={`image_${index}`} />
+                      <button className='button' onClick={() => handleIdentify(index)}>Identify Image</button>
                     </div>
                   )
                 })
             }
           </div>
-          <img src={imageArray[selectedImage]} alt="Image obtained from the page" crossOrigin="anonymous" ref={imageRef} />
-          <button className='button' onClick={handleIdentify}>Identify Image</button>
         </div>
       </div>
     </div>
