@@ -89,13 +89,13 @@ function App(props) {
 
       <div className="mainWrapper">
         <div className="mainContent">
-          <div className="imageHolder">
+          <div className="imageWrapper">
             {
               (isModelLoading /* && !imageArray */) ?
                 <h2>Model Loading...</h2> :
                 imageArray.map((image, index) => {
                   return (
-                    <div key={index} >
+                    <div key={index} className="imageHolder">
                       <img src={image} alt="Image obtained from the page" crossOrigin="anonymous" id={`image_${index}`} />
                       <button className='button' onClick={() => handleIdentify(index)}>Identify Image</button>
                     </div>
@@ -106,7 +106,7 @@ function App(props) {
           <table className="resultsHolder">
             <thead>
               <tr>
-                <th colspan="2" >Predictions:</th>
+                <th colSpan="2" >Predictions:</th>
               </tr>
             </thead>
             <tbody>
