@@ -6,9 +6,6 @@
 .App{
   display:flex;
   flex-direction: column;
-  /* height: '100%'; */
-  /* flex: 'center'; */
-  /* background-color: rgb(12, 134, 39); */
 }
 h1, h2{
   justify-content: flex-start;
@@ -17,7 +14,6 @@ h1, h2{
 }
 
 .mainWrapper{
-  /* justify-content: space-evenly; */
   display: flex;
   flex-direction: column;
   /* background-color: rgb(156, 192, 126); */
@@ -25,7 +21,6 @@ h1, h2{
 
 .mainContent{
   display:flex;
-  /* width:'80%'; */
   flex-flow: row wrap;
   align-items: center;
   /* background-color: rgb(13, 13, 14); */
@@ -66,7 +61,6 @@ h1, h2{
 }
 
 .wikiData{
-  /* flex-basis: 500px; */
   flex:2;
   padding: 10px;
   border: 1px rgb(0, 0, 0) solid;
@@ -74,22 +68,14 @@ h1, h2{
   /* background-color: rgb(211, 58, 58); */
 }
 
-/* .wikiTitle{
-  font: bolder;
-} */
-
 .imageHolder img{
-  /* border-radius: 10px; */
   border: 1px solid #ddd;
   border-radius: 10px;
   padding: 5px;
   max-width: 150px;
   max-height: 150px;
-  /* align-self: center; */
 }
-/* .imageHolder button{
-  align-self: center;
-} */
+
 .button {
   border: none;
   color: white;

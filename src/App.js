@@ -38,7 +38,7 @@ function App(props) {
     setIsModelLoading(true);
     try {
       const modelLoaded = await mobilenet.load();
-      // console.log('This is the modelLoade from App.js:', modelLoaded);
+      // console.log('This is the modelLoaded from App.js:', modelLoaded);
       setModel(modelLoaded);
       setIsModelLoading(false);
     } catch (error) {
@@ -90,7 +90,7 @@ function App(props) {
         <div className="mainContent">
           <div className="imageWrapper">
             {
-              (isModelLoading /*  && !imageArray  */) ?
+              (isModelLoading) ?
                 <h2>Model Loading...</h2> :
                 imageArray.map((image, index) => {
                   return (
