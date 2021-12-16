@@ -78,8 +78,9 @@ function App(props) {
 
   const handlePressPrediction = async (prediction) => {
     setWikiDataStatus(true);
-    const wikiData = await axios.get(`https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&prop=extracts&titles=${prediction}&formatversion=2&exsentences=10&exlimit=1&exintro=1&explaintext=1`);
-    console.log('This is the data found in Wikipedia:', wikiData.data.query.pages[0].extract);
+    const wikiData = await axios.get(`https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&prop=extracts&generator=search&redirects=1&formatversion=2&exsentences=10&exlimit=1&exintro=1&explaintext=1&gsrsearch=${prediction}&gsrlimit=1&gsrenablerewrites=1`);
+    console.log('This is the data found in Wikipedia:', wikiData.data.query.pages[0]);
+    setWikiData(wikiData.data.query.pages[0].extract);
   }
 
   return (
