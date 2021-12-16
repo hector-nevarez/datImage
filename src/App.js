@@ -46,11 +46,11 @@ function App(props) {
       setIsModelLoading(false);
     }
   }
-  
+
   useEffect(() => {
     loadModel();
   }, []);
-  
+
   // console.log('This is the images from App.js:', imageArray);
   const handleIdentify = async (index) => {
     let getImage = document.getElementById(`image_${index}`)
@@ -78,15 +78,15 @@ function App(props) {
   const handlePressPrediction = async (prediction) => {
     setWikiDataStatus(true);
     const wikiData = await axios.get(`https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&prop=extracts&generator=search&redirects=1&formatversion=2&exsentences=10&exlimit=1&exintro=1&explaintext=1&gsrsearch=${prediction}&gsrlimit=1&gsrenablerewrites=1`);
-    console.log('This is the data found in Wikipedia:', wikiData.data.query.pages[0]);
+    // console.log('This is the data found in Wikipedia:', wikiData.data.query.pages[0]);
     setWikiData(wikiData.data.query.pages[0].extract);
   }
 
   return (
     <div className="App">
-      <h1>Image Information</h1>
-
+      <h1>DatImage</h1>
       <div className="mainWrapper">
+        <h2>Images from the website you visited</h2>
         <div className="mainContent">
           <div className="imageWrapper">
             {
@@ -96,7 +96,7 @@ function App(props) {
                   return (
                     <div key={index} className="imageHolder">
                       <img src={image} alt="Image obtained from the page" crossOrigin="anonymous" id={`image_${index}`} />
-                      <button className='button' onClick={() => handleIdentify(index)}>Identify Image</button>
+                      <button className="button" onClick={() => handleIdentify(index)}>Identify Image</button>
                     </div>
                   )
                 })
@@ -112,7 +112,7 @@ function App(props) {
               {
                 (prediction.length > 0) ? prediction.map((pred, index) => {
                   return (
-                    <tr key={index} onClick={() => handlePressPrediction(pred)}>{pred.replace("%20", " ")}
+                    <tr key={index} onClick={() => handlePressPrediction(pred)}>{pred.split("%20").join(' ')}
                     </tr>
                   )
                 }) :
@@ -125,8 +125,8 @@ function App(props) {
           {
             (wikiDataStatus) ?
               <div className="wikiData">
-                <div>Data from Wikipedia:</div>
-                <div>{wikiData}</div>
+                <h3 >Data from Wikipedia:</h3>
+                <p>{wikiData}</p>
               </div> :
               <span></span>
           }

@@ -8,60 +8,104 @@
   flex-direction: column;
   /* height: '100%'; */
   /* flex: 'center'; */
-  background-color: rgb(12, 134, 39);
+  /* background-color: rgb(12, 134, 39); */
 }
-h1{
+h1, h2{
   justify-content: flex-start;
   align-self: center;
-  background-color: rgb(86, 114, 236);
+  /* background-color: rgb(86, 114, 236); */
 }
 
-/* .mainWrapper{
-  justify-content: space-evenly;
-} */
+.mainWrapper{
+  /* justify-content: space-evenly; */
+  display: flex;
+  flex-direction: column;
+  /* background-color: rgb(156, 192, 126); */
+}
 
 .mainContent{
   display:flex;
   /* width:'80%'; */
   flex-flow: row wrap;
   align-items: center;
-  background-color: rgb(180, 180, 182);
+  /* background-color: rgb(13, 13, 14); */
 }
 
 .imageWrapper{
   display:flex;
   flex:3;
   border: 1px rgb(0, 0, 0) solid;
+  border-radius: 15px;
   flex-flow: row wrap;
   justify-content: space-evenly;
   padding: 10px;
-  background-color: rgb(113, 131, 117);
-
+  /* background-color: rgb(113, 131, 117); */
 }
+
 .imageHolder{
   display:flex;
-  /* height: 150px; */
   flex-direction: column;
-  background-color: rgb(255, 251, 4);
-  
+  justify-content:center;
+  align-items: center;  
+  width: 200px;
+  height: 200px;
+  /* background-color: rgb(255, 251, 4); */
 }
+
 .resultsHolder{
   flex:1;
   padding: 10px;
-  background-color: rgb(253, 75, 179);
+  border: 1px rgb(0, 0, 0) solid;
+  border-radius: 15px;
+  margin: 15px;
+  /* background-color: rgb(253, 75, 179); */
+}
+.resultsHolder tbody tr:hover {
+  text-align: center;
+  background-color: yellow;
 }
 
 .wikiData{
   /* flex-basis: 500px; */
   flex:2;
   padding: 10px;
-  background-color: rgb(211, 58, 58);
+  border: 1px rgb(0, 0, 0) solid;
+  border-radius: 15px;
+  /* background-color: rgb(211, 58, 58); */
 }
+
+/* .wikiTitle{
+  font: bolder;
+} */
+
 .imageHolder img{
   /* border-radius: 10px; */
   border: 1px solid #ddd;
-  border-radius: 4px;
+  border-radius: 10px;
   padding: 5px;
-  width: 150px;
-  height: 150px;
+  max-width: 150px;
+  max-height: 150px;
+  /* align-self: center; */
+}
+/* .imageHolder button{
+  align-self: center;
+} */
+.button {
+  border: none;
+  color: white;
+  padding: 6px 18px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  transition-duration: 0.4s;
+  align-self: center;
+  border-radius: 20px;
+  background-color: #4CAF50;
+}
+
+.button:hover {
+  box-shadow: 0 5px 8px 0 rgba(0,0,0,0.24),0 8px 24px 0 rgba(0,0,0,0.19);
 }
